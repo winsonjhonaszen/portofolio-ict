@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Winson Jhonaszen | Premium Portfolio & Management</title>
+    
+    <!-- Font Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lux: {
+                            cream: '#FAF8F5',
+                            creamDark: '#EAE3D9',
+                            tealLight: '#D0E3E3',
+                            teal: '#8DB3B3',
+                            tealDark: '#2C4C4C',
+                            gold: '#C5A880'
+                        }
+                    },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'] },
+                    boxShadow: {
+                        'premium': '0 20px 40px -15px rgba(44, 76, 76, 0.1)',
+                        'premium-hover': '0 25px 50px -12px rgba(44, 76, 76, 0.25)',
+                        'glow': '0 0 30px rgba(141, 179, 179, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { -webkit-tap-highlight-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .bg-mesh {
+            background-color: #FAF8F5;
+            background-image: 
+                radial-gradient(at 10% 0%, rgba(208, 227, 227, 0.6) 0px, transparent 50%),
+                radial-gradient(at 90% 100%, rgba(234, 227, 217, 0.8) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(141, 179, 179, 0.15) 0px, transparent 60%);
+            background-attachment: fixed;
+        }
+
+        .glass-premium {
+            background: rgba(250, 248, 245, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            border-right: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .profile-frame {
+            position: relative;
+            padding: 6px;
+            background: linear-gradient(135deg, #C5A880, #8DB3B3, #C5A880);
+            border-radius: 50%;
+            animation: rotateFrame 10s linear infinite;
+        }
+        .profile-frame img { animation: reverseRotate 10s linear infinite; }
+        @keyframes rotateFrame { 100% { transform: rotate(360deg); } }
+        @keyframes reverseRotate { 100% { transform: rotate(-360deg); } }
+
+        .hobby-card-icon { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hobby-card:hover .hobby-card-icon { transform: scale(1.1) rotate(-5deg); }
+    </style>
+</head>
+<body class="bg-mesh text-lux-tealDark font-sans antialiased pb-28 selection:bg-lux-teal selection:text-white">
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-md z-40 transition-all duration-300">
+        <div class="glass-premium rounded-full px-5 py-3 flex justify-between items-center shadow-premium">
+            <!-- Logo -->
+            <a href="#beranda" class="text-[10px] uppercase font-extrabold tracking-[0.2em] text-lux-gold hover:text-lux-tealDark transition-colors">Winson.</a>
+            
+            <!-- Navbar Links (Tampil di layar desktop/tablet) -->
+            <nav class="hidden sm:flex items-center gap-4">
+                <a href="#tentang" class="text-[10px] font-bold text-lux-tealDark/60 hover:text-lux-tealDark uppercase tracking-widest transition-colors">Bio</a>
+                <a href="#karya" class="text-[10px] font-bold text-lux-tealDark/60 hover:text-lux-tealDark uppercase tracking-widest transition-colors">Karya</a>
+                <a href="#kontak" class="text-[10px] font-bold text-lux-tealDark/60 hover:text-lux-tealDark uppercase tracking-widest transition-colors">Kontak</a>
+            </nav>
+
+            <!-- Admin Button -->
+            <button id="btnAdminTrigger" onclick="openLoginModal()" class="flex items-center gap-1.5 px-3 py-1.5 bg-lux-tealDark/10 hover:bg-lux-tealDark hover:text-white text-lux-tealDark rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300">
+                <i data-lucide="lock" class="w-3 h-3"></i> <span id="adminBtnText">Admin</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO / LANDING PAGE FRONTEND -->
+    <main class="max-w-md mx-auto min-h-screen px-6 relative overflow-hidden pt-24">
+        
+        <!-- SECTION: HERO -->
+        <section id="beranda" class="min-h-[80vh] flex flex-col justify-center items-center text-center pt-4 reveal active">
+            <div class="relative mb-8">
+                <div class="absolute inset-0 bg-lux-teal blur-2xl opacity-40 rounded-full animate-pulse"></div>
+                <div class="profile-frame shadow-glow">
+                    <img id="displayAvatar" src="https://sketchok.com/images/articles/01-cartoons/068-oggy/05/11.jpg" 
+                         alt="Winson Jhonaszen" 
+                         class="relative z-10 w-44 h-44 rounded-full object-cover border-[6px] border-lux-cream bg-white">
+                </div>
+            </div>
+            
+            <p class="text-lux-gold font-medium tracking-[0.2em] text-xs uppercase mb-3">Portfolio Eksklusif</p>
+            <h1 id="displayName" class="text-4xl font-extrabold text-lux-tealDark mb-2 tracking-tight">
+                WINSON JHONASZEN
+            </h1>
+            <h2 id="displayRole" class="text-lg font-light text-lux-tealDark/80 mb-6 italic">
+                Senior UI/UX Designer
+            </h2>
+            
+            <a href="#kontak" class="group relative px-8 py-3.5 bg-lux-tealDark text-lux-cream rounded-full font-semibold tracking-wide overflow-hidden shadow-premium active:scale-95 transition-all duration-300">
+                <span class="relative z-10 flex items-center gap-2 text-sm">
+                    Mulai Kolaborasi <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </span>
+                <div class="absolute inset-0 bg-gradient-to-r from-lux-tealDark via-lux-teal to-lux-tealDark opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </a>
+        </section>
+
+        <!-- SECTION: TENTANG -->
+        <section id="tentang" class="py-10 reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+                <h3 class="text-sm font-semibold tracking-[0.15em] uppercase text-lux-gold">Tentang Saya</h3>
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+            </div>
+            
+            <div class="glass-premium p-7 rounded-[2.5rem] shadow-premium relative group hover:shadow-premium-hover transition-shadow duration-500">
+                <div class="absolute -top-4 -right-4 text-lux-teal/20 group-hover:text-lux-teal/40 transition-colors duration-500">
+                    <i data-lucide="quote" class="w-16 h-16 fill-current"></i>
+                </div>
+                <p id="displayBio" class="text-sm leading-loose text-lux-tealDark/80 font-medium relative z-10 mb-6">
+                    Mendefinisikan ulang pengalaman digital melalui Mobile-First Design. Bagi saya, desain bukan sekadar estetika, melainkan simfoni visual yang memberikan solusi elegan dan intuitif.
+                </p>
+                
+                <div id="displaySkills" class="flex flex-wrap gap-2.5">
+                    <span class="px-3.5 py-1.5 bg-white/60 text-lux-tealDark text-xs font-semibold rounded-full border border-white/80 shadow-sm">Art Direction</span>
+                    <span class="px-3.5 py-1.5 bg-white/60 text-lux-tealDark text-xs font-semibold rounded-full border border-white/80 shadow-sm">UX Strategy</span>
+                    <span class="px-3.5 py-1.5 bg-white/60 text-lux-tealDark text-xs font-semibold rounded-full border border-white/80 shadow-sm">Prototyping</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: KARYA -->
+        <section id="karya" class="py-10 reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+                <h3 class="text-sm font-semibold tracking-[0.15em] uppercase text-lux-gold">Karya Masterpiece</h3>
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+            </div>
+
+            <div id="projectsContainer" class="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-6 no-scrollbar -mx-6 px-6">
+                <!-- Data Karya Dinamis Dimuat dari JS -->
+            </div>
+        </section>
+
+        <!-- SECTION: HOBI -->
+        <section id="hobi" class="py-10 reveal">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+                <h3 class="text-sm font-semibold tracking-[0.15em] uppercase text-lux-gold">Ketertarikan</h3>
+                <div class="h-[1px] flex-1 bg-lux-gold/30"></div>
+            </div>
+
+            <div id="hobbiesContainer" class="grid grid-cols-2 gap-4">
+                <!-- Data Hobi Dinamis Dimuat dari JS -->
+            </div>
+        </section>
+
+        <!-- SECTION: KONTAK -->
+        <section id="kontak" class="py-10 mb-6 reveal">
+            <div class="bg-gradient-to-br from-lux-tealDark to-[#1A3333] p-8 rounded-[3rem] text-center shadow-premium relative overflow-hidden">
+                <i data-lucide="mail-open" class="w-10 h-10 text-lux-gold mx-auto mb-3 relative z-10"></i>
+                <h2 class="text-2xl font-bold text-lux-cream mb-2 relative z-10">Mari Wujudkan Visi Anda</h2>
+                <p class="text-lux-tealLight text-xs mb-6 relative z-10 font-light">Tersedia untuk proyek freelance terpilih.</p>
+                
+                <div class="flex justify-center gap-4 relative z-10">
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-lux-cream flex justify-center items-center hover:bg-white/20 hover:text-lux-gold transition-all duration-300">
+                        <i data-lucide="dribbble" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-lux-cream flex justify-center items-center hover:bg-white/20 hover:text-lux-gold transition-all duration-300">
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-lux-cream flex justify-center items-center hover:bg-white/20 hover:text-lux-gold transition-all duration-300">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FLOATING BOTTOM NAVIGATION -->
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-sm glass-premium rounded-full z-50 px-6 py-4 shadow-premium md:hidden">
+        <ul class="flex justify-between items-center">
+            <li><a href="#beranda" class="nav-link flex items-center text-lux-tealDark"><i data-lucide="layout-dashboard" class="w-5 h-5"></i></a></li>
+            <li><a href="#tentang" class="nav-link flex items-center text-lux-tealDark/40"><i data-lucide="user" class="w-5 h-5"></i></a></li>
+            <li><a href="#karya" class="nav-link flex items-center text-lux-tealDark/40"><i data-lucide="sparkles" class="w-5 h-5"></i></a></li>
+            <li><a href="#hobi" class="nav-link flex items-center text-lux-tealDark/40"><i data-lucide="heart" class="w-5 h-5"></i></a></li>
+            <li><a href="#kontak" class="nav-link flex items-center text-lux-tealDark/40"><i data-lucide="send" class="w-5 h-5"></i></a></li>
+        </ul>
+    </nav>
+
+    <!-- MODAL LOGIN ADMIN -->
+    <div id="loginModal" class="fixed inset-0 bg-lux-tealDark/60 backdrop-blur-md z-[100] hidden flex justify-center items-center p-6">
+        <div class="glass-premium bg-white/90 w-full max-w-sm p-8 rounded-[2.5rem] shadow-2xl relative border border-white">
+            <button onclick="closeLoginModal()" class="absolute top-6 right-6 text-lux-tealDark/50 hover:text-lux-tealDark">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-lux-teal/20 text-lux-tealDark rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-xl font-bold text-lux-tealDark">Login Administrator</h3>
+                <p class="text-xs text-lux-tealDark/60 mt-1">Masuk untuk mengelola konten landing page</p>
+            </div>
+            
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-lux-tealDark mb-1">Username</label>
+                    <input type="text" id="adminUser" required placeholder="Default: Admin" class="w-full px-4 py-3 rounded-xl bg-white/70 border border-lux-tealLight text-sm focus:outline-none focus:border-lux-tealDark">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-lux-tealDark mb-1">Password</label>
+                    <input type="password" id="adminPass" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl bg-white/70 border border-lux-tealLight text-sm focus:outline-none focus:border-lux-tealDark">
+                </div>
+                <div id="loginError" class="text-red-500 text-xs text-center hidden font-medium">Username atau Password salah!</div>
+                <button type="submit" class="w-full py-3.5 bg-lux-tealDark text-white font-bold text-sm rounded-xl shadow-md hover:bg-lux-teal transition-colors">
+                    Masuk ke Panel
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL BACKEND PANEL ADMIN (CRUD) -->
+    <div id="adminPanel" class="fixed inset-0 bg-lux-cream z-[90] hidden overflow-y-auto">
+        <div class="max-w-md mx-auto p-6 pb-20">
+            <!-- Header Panel -->
+            <div class="flex justify-between items-center mb-8 pb-4 border-b border-lux-tealLight">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-lux-tealDark">Panel Kontrol</h2>
+                    <p class="text-xs text-lux-gold font-medium">Kelola Konten Landing Page</p>
+                </div>
+                <button onclick="logoutAdmin()" class="px-4 py-2 bg-red-100 text-red-600 rounded-xl text-xs font-bold hover:bg-red-200 transition-colors">
+                    Keluar
+                </button>
+            </div>
+
+            <!-- Tab Navigasi Admin -->
+            <div class="flex gap-2 mb-6 border-b border-lux-creamDark pb-2">
+                <button onclick="switchTab('tab-bio')" id="btnTabBio" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-lux-tealDark text-white">Profil</button>
+                <button onclick="switchTab('tab-projects')" id="btnTabProjects" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-lux-creamDark/60 text-lux-tealDark">Karya</button>
+                <button onclick="switchTab('tab-hobbies')" id="btnTabHobbies" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-lux-creamDark/60 text-lux-tealDark">Hobi</button>
+            </div>
+
+            <!-- TAB 1: FORM EDIT PROFIL -->
+            <div id="tab-bio" class="tab-content space-y-4">
+                <div class="glass-premium p-6 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-sm text-lux-tealDark">Edit Informasi Utama</h3>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Nama Lengkap</label>
+                        <input type="text" id="inputName" class="w-full p-3 rounded-xl border border-lux-tealLight text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Gelar / Role</label>
+                        <input type="text" id="inputRole" class="w-full p-3 rounded-xl border border-lux-tealLight text-sm bg-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Foto Profil (URL atau Upload)</label>
+                        <div class="flex flex-col gap-2">
+                            <input type="text" id="inputAvatar" placeholder="https://..." class="w-full p-3 rounded-xl border border-lux-tealLight text-sm bg-white">
+                            <input type="file" id="inputAvatarFile" accept="image/*" class="w-full text-sm bg-white file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-lux-tealLight file:text-lux-tealDark hover:file:bg-lux-teal/50">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">Deskripsi Bio</label>
+                        <textarea id="inputBio" rows="3" class="w-full p-3 rounded-xl border border-lux-tealLight text-sm bg-white"></textarea>
+                    </div>
+                    <button onclick="saveProfile()" class="w-full py-3 bg-lux-tealDark text-white font-bold text-xs rounded-xl">Simpan Profil</button>
+                </div>
+            </div>
+
+            <!-- TAB 2: EDIT KARYA -->
+            <div id="tab-projects" class="tab-content hidden space-y-4">
+                <button onclick="openProjectModal()" class="w-full py-3 bg-lux-gold text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4"></i> Tambah Karya Baru
+                </button>
+                <div id="adminProjectsList" class="space-y-3">
+                    <!-- List Item Karya Dimuat dari JS -->
+                </div>
+            </div>
+
+            <!-- TAB 3: EDIT HOBI -->
+            <div id="tab-hobbies" class="tab-content hidden space-y-4">
+                <div id="adminHobbiesList" class="space-y-3">
+                    <!-- List Item Hobi Dimuat dari JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL FORM TAMBAH/EDIT KARYA -->
+    <div id="projectFormModal" class="fixed inset-0 bg-lux-tealDark/60 backdrop-blur-md z-[110] hidden flex justify-center items-center p-6">
+        <div class="glass-premium bg-white w-full max-w-sm p-6 rounded-[2rem] space-y-4 max-h-[90vh] overflow-y-auto no-scrollbar">
+            <h3 id="projectModalTitle" class="font-bold text-lg text-lux-tealDark">Tambah Karya</h3>
+            <input type="hidden" id="projId">
+            <div>
+                <label class="block text-xs font-medium mb-1">Gambar Karya (Opsional)</label>
+                <input type="file" id="projImageFile" accept="image/*" class="w-full text-sm bg-white file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-lux-tealLight file:text-lux-tealDark hover:file:bg-lux-teal/50">
+                <input type="hidden" id="projImageBase64">
+                <div id="projImagePreview" class="mt-2 hidden">
+                    <img src="" class="h-20 w-full rounded-xl object-cover border border-lux-tealLight">
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-medium mb-1">Kategori</label>
+                <input type="text" id="projCategory" placeholder="Misal: Fintech, E-Commerce" class="w-full p-3 rounded-xl border text-sm bg-white">
+            </div>
+            <div>
+                <label class="block text-xs font-medium mb-1">Judul Proyek</label>
+                <input type="text" id="projTitle" placeholder="Nama Proyek" class="w-full p-3 rounded-xl border text-sm bg-white">
+            </div>
+            <div>
+                <label class="block text-xs font-medium mb-1">Deskripsi Singkat</label>
+                <textarea id="projDesc" rows="2" class="w-full p-3 rounded-xl border text-sm bg-white"></textarea>
+            </div>
+            <div>
+                <label class="block text-xs font-medium mb-1">Link Studi Kasus (URL)</label>
+                <input type="text" id="projLink" placeholder="https://..." class="w-full p-3 rounded-xl border text-sm bg-white">
+            </div>
+            <div class="flex gap-2 pt-2">
+                <button onclick="closeProjectModal()" class="w-1/2 py-3 bg-lux-creamDark text-lux-tealDark font-bold text-xs rounded-xl">Batal</button>
+                <button onclick="saveProjectForm()" class="w-1/2 py-3 bg-lux-tealDark text-white font-bold text-xs rounded-xl">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT DATA STORE & APP LOGIC -->
+    <script>
+        // Data Default (In-Memory Initial Data)
+        const initialData = {
+            profile: {
+                name: "WINSON JHONASZEN",
+                role: "Senior UI/UX Designer",
+                avatar: "https://sketchok.com/images/articles/01-cartoons/068-oggy/05/11.jpg",
+                bio: "Mendefinisikan ulang pengalaman digital melalui Mobile-First Design. Bagi saya, desain bukan sekadar estetika, melainkan simfoni visual yang memberikan solusi elegan dan intuitif."
+            },
+            projects: [
+                {
+                    id: 1,
+                    category: "Fintech",
+                    title: "Aurea Wealth App",
+                    desc: "Redesain antarmuka manajemen kekayaan kelas atas dengan interaksi mikro yang halus.",
+                    link: "#"
+                },
+                {
+                    id: 2,
+                    category: "E-Commerce",
+                    title: "Lumina Boutique",
+                    desc: "Pengalaman belanja virtual eksklusif dengan transisi halaman yang mulus.",
+                    link: "#"
+                }
+            ],
+            hobbies: [
+                {
+                    id: 1,
+                    title: "Bola Basket",
+                    desc: "Aktivitas dinamis untuk menjaga fokus dan kolaborasi tim.",
+                    icon: "dribbble",
+                    link: ""
+                },
+                {
+                    id: 2,
+                    title: "Sepak Bola",
+                    desc: "Menyusun strategi di lapangan hijau, sama seperti mendesain UI.",
+                    icon: "goal",
+                    link: ""
+                }
+            ]
+        };
+
+        // Mengambil data dari localStorage jika ada, atau menggunakan default
+        let appData = JSON.parse(localStorage.getItem('winson_portfolio_data')) || initialData;
+
+        function saveData() {
+            localStorage.setItem('winson_portfolio_data', JSON.stringify(appData));
+            renderFrontend();
+        }
+
+        // --- RENDER FRONTEND ---
+        function renderFrontend() {
+            document.getElementById('displayName').innerText = appData.profile.name;
+            document.getElementById('displayRole').innerText = appData.profile.role;
+            document.getElementById('displayAvatar').src = appData.profile.avatar;
+            document.getElementById('displayBio').innerText = appData.profile.bio;
+
+            // Render Projects
+            const projContainer = document.getElementById('projectsContainer');
+            projContainer.innerHTML = appData.projects.map(p => `
+                <div class="snap-center shrink-0 w-[85%] glass-premium rounded-[2.5rem] overflow-hidden shadow-premium hover:shadow-premium-hover transition-all duration-500 hover:-translate-y-1">
+                    ${p.image ? 
+                    `<div class="aspect-square w-full bg-white/50 p-2 flex items-center justify-center cursor-pointer group/img overflow-hidden relative" onclick="openImageViewer('${p.image}')">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-contain transition-transform duration-700 group-hover/img:scale-110">
+                        <div class="absolute inset-0 bg-lux-tealDark/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <i data-lucide="zoom-in" class="w-8 h-8 text-white"></i>
+                        </div>
+                    </div>` : 
+                    `<div class="aspect-square w-full bg-gradient-to-br from-lux-tealLight to-lux-cream relative flex items-center justify-center">
+                        <i data-lucide="sparkles" class="w-10 h-10 text-lux-tealDark/40"></i>
+                    </div>`}
+                    <div class="p-6 bg-white/40">
+                        <span class="text-[10px] uppercase tracking-widest text-lux-gold font-bold mb-1 block">${p.category}</span>
+                        <h4 class="font-bold text-lg mb-2 text-lux-tealDark">${p.title}</h4>
+                        <p class="text-xs text-lux-tealDark/70 mb-4 leading-relaxed">${p.desc}</p>
+                        <a href="${p.link}" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-lux-tealDark hover:text-lux-gold transition-colors">
+                            Eksplorasi Studi <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            `).join('') + `<div class="snap-center shrink-0 w-2"></div>`;
+
+            // Render Hobbies
+            const hobContainer = document.getElementById('hobbiesContainer');
+            hobContainer.innerHTML = appData.hobbies.map(h => `
+                <div class="hobby-card group relative glass-premium rounded-3xl p-5 shadow-premium hover:shadow-premium-hover hover:-translate-y-2 hover:bg-white/60 transition-all duration-500 border border-white/50 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 mb-4 rounded-2xl bg-lux-creamDark/50 flex items-center justify-center group-hover:bg-lux-tealLight/50 transition-colors duration-500">
+                            <i data-lucide="${h.icon}" class="w-6 h-6 text-lux-tealDark hobby-card-icon"></i>
+                        </div>
+                        <h4 class="font-bold text-base text-lux-tealDark mb-1 group-hover:text-lux-gold transition-colors duration-300">${h.title}</h4>
+                        <p class="text-[10px] text-lux-tealDark/60 leading-relaxed mb-3">${h.desc}</p>
+                    </div>
+                    ${h.link ? `<a href="${h.link}" target="_blank" class="inline-flex items-center gap-1.5 text-[10px] font-bold text-lux-tealDark hover:text-lux-gold transition-colors mt-auto pt-2 border-t border-lux-tealLight/50">Lihat Detail <i data-lucide="external-link" class="w-3 h-3"></i></a>` : ''}
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // --- LOGIN SECURITY & MODAL ---
+        let isAdminLoggedIn = false;
+
+        function openLoginModal() {
+            if (isAdminLoggedIn) {
+                document.getElementById('adminPanel').classList.remove('hidden');
+                renderAdminPanel();
+            } else {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+            document.getElementById('loginError').classList.add('hidden');
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+
+            // Memeriksa Kredensial Default: Admin | 12121288
+            if (u === 'Admin' && p === '12121288') {
+                isAdminLoggedIn = true;
+                closeLoginModal();
+                document.getElementById('adminBtnText').innerText = 'Dashboard';
+                document.getElementById('adminPanel').classList.remove('hidden');
+                renderAdminPanel();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            document.getElementById('adminBtnText').innerText = 'Admin';
+            document.getElementById('adminPanel').classList.add('hidden');
+        }
+
+        // --- BACKEND ADMIN MANAGEMENT ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-lux-tealDark', 'text-white');
+                btn.classList.add('bg-lux-creamDark/60', 'text-lux-tealDark');
+            });
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            const activeBtn = tabId === 'tab-bio' ? 'btnTabBio' : tabId === 'tab-projects' ? 'btnTabProjects' : 'btnTabHobbies';
+            document.getElementById(activeBtn).classList.add('bg-lux-tealDark', 'text-white');
+        }
+
+        function renderAdminPanel() {
+            // Fill Bio Form
+            document.getElementById('inputName').value = appData.profile.name;
+            document.getElementById('inputRole').value = appData.profile.role;
+            document.getElementById('inputAvatar').value = appData.profile.avatar;
+            document.getElementById('inputBio').value = appData.profile.bio;
+
+            // Render Projects Management List
+            const pList = document.getElementById('adminProjectsList');
+            pList.innerHTML = appData.projects.map(p => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-lux-tealLight flex justify-between items-center">
+                    <div>
+                        <span class="text-[9px] font-bold uppercase text-lux-gold">${p.category}</span>
+                        <h4 class="font-bold text-sm text-lux-tealDark">${p.title}</h4>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="editProject(${p.id})" class="p-2 text-lux-tealDark bg-lux-cream rounded-lg"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button onclick="deleteProject(${p.id})" class="p-2 text-red-500 bg-red-50 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Hobbies Management List
+            const hList = document.getElementById('adminHobbiesList');
+            hList.innerHTML = appData.hobbies.map(h => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-lux-tealLight space-y-2">
+                    <div class="flex justify-between items-center mb-2">
+                        <h4 class="font-bold text-sm text-lux-tealDark">${h.title}</h4>
+                        <span class="text-xs text-lux-gold font-mono">${h.icon}</span>
+                    </div>
+                    
+                    <label class="block text-[10px] font-bold text-lux-tealDark mb-1 uppercase tracking-wider">Deskripsi Singkat</label>
+                    <textarea onchange="updateHobbyDesc(${h.id}, this.value)" rows="2" class="w-full text-xs p-2.5 rounded-xl border border-lux-creamDark focus:outline-none focus:border-lux-teal">${h.desc}</textarea>
+                    
+                    <label class="block text-[10px] font-bold text-lux-tealDark mb-1 mt-2 uppercase tracking-wider">Tautan / Link (Opsional)</label>
+                    <input type="text" onchange="updateHobbyLink(${h.id}, this.value)" value="${h.link || ''}" placeholder="Contoh: https://dribbble.com/..." class="w-full text-xs p-2.5 rounded-xl border border-lux-creamDark focus:outline-none focus:border-lux-teal">
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function saveProfile() {
+            appData.profile.name = document.getElementById('inputName').value;
+            appData.profile.role = document.getElementById('inputRole').value;
+            appData.profile.avatar = document.getElementById('inputAvatar').value;
+            appData.profile.bio = document.getElementById('inputBio').value;
+            saveData();
+            alert('Profil berhasil diperbarui!');
+        }
+
+        // Event Listener untuk Upload Foto Profil
+        document.getElementById('inputAvatarFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('inputAvatar').value = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Event Listener untuk Upload Gambar Karya
+        document.getElementById('projImageFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('projImageBase64').value = event.target.result;
+                    const previewDiv = document.getElementById('projImagePreview');
+                    previewDiv.classList.remove('hidden');
+                    previewDiv.querySelector('img').src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                document.getElementById('projImageBase64').value = '';
+                document.getElementById('projImagePreview').classList.add('hidden');
+            }
+        });
+
+        // CRUD Karya
+        function openProjectModal() {
+            document.getElementById('projId').value = '';
+            document.getElementById('projCategory').value = '';
+            document.getElementById('projTitle').value = '';
+            document.getElementById('projDesc').value = '';
+            document.getElementById('projLink').value = '';
+            
+            document.getElementById('projImageFile').value = '';
+            document.getElementById('projImageBase64').value = '';
+            document.getElementById('projImagePreview').classList.add('hidden');
+
+            document.getElementById('projectModalTitle').innerText = "Tambah Karya";
+            document.getElementById('projectFormModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectFormModal').classList.add('hidden');
+        }
+
+        function editProject(id) {
+            const p = appData.projects.find(item => item.id === id);
+            if (!p) return;
+            document.getElementById('projId').value = p.id;
+            document.getElementById('projCategory').value = p.category;
+            document.getElementById('projTitle').value = p.title;
+            document.getElementById('projDesc').value = p.desc;
+            document.getElementById('projLink').value = p.link;
+            
+            document.getElementById('projImageFile').value = '';
+            document.getElementById('projImageBase64').value = p.image || '';
+            if (p.image) {
+                const previewDiv = document.getElementById('projImagePreview');
+                previewDiv.classList.remove('hidden');
+                previewDiv.querySelector('img').src = p.image;
+            } else {
+                document.getElementById('projImagePreview').classList.add('hidden');
+            }
+
+            document.getElementById('projectModalTitle').innerText = "Edit Karya";
+            document.getElementById('projectFormModal').classList.remove('hidden');
+        }
+
+        function saveProjectForm() {
+            const id = document.getElementById('projId').value;
+            const category = document.getElementById('projCategory').value;
+            const title = document.getElementById('projTitle').value;
+            const desc = document.getElementById('projDesc').value;
+            const link = document.getElementById('projLink').value;
+            const image = document.getElementById('projImageBase64').value;
+
+            if (id) {
+                const index = appData.projects.findIndex(p => p.id == id);
+                if (index !== -1) {
+                    appData.projects[index] = { id: Number(id), category, title, desc, link, image };
+                }
+            } else {
+                appData.projects.push({
+                    id: Date.now(),
+                    category,
+                    title,
+                    desc,
+                    link,
+                    image
+                });
+            }
+            saveData();
+            closeProjectModal();
+            renderAdminPanel();
+        }
+
+        function deleteProject(id) {
+            appData.projects = appData.projects.filter(p => p.id !== id);
+            saveData();
+            renderAdminPanel();
+        }
+
+        function updateHobbyDesc(id, newDesc) {
+            const h = appData.hobbies.find(item => item.id === id);
+            if (h) {
+                h.desc = newDesc;
+                saveData();
+            }
+        }
+
+        function updateHobbyLink(id, newLink) {
+            const h = appData.hobbies.find(item => item.id === id);
+            if (h) {
+                h.link = newLink;
+                saveData();
+            }
+        }
+
+        // Initial Setup
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFrontend();
+
+            // Intersection Observer
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add("active");
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
