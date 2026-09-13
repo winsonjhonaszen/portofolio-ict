@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Pribadi | Senior Software Engineer & Tech Leader</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts (Pixel & Clean Typography) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        peach: {
+                            50: '#FFF8F6',
+                            100: '#FFF0EC',
+                            200: '#FFE0D8',
+                            300: '#FFC8B8',
+                            400: '#FFA085',
+                            500: '#FF7B54', /* Core Accent Peach Coral */
+                            600: '#E65A32',
+                            700: '#C23E19',
+                            800: '#8A2B12',
+                            900: '#4A170A',
+                        },
+                        cozy: {
+                            bg: '#FFF6F0',      /* Soft Peach Warm Base */
+                            card: '#FFFFFF',    /* Crisp Clean White */
+                            border: '#FFE5D9',  /* Soft Border */
+                            text: '#2D2422',    /* Soft Dark Charcoal */
+                            muted: '#7A6B68',   /* Warm Muted Gray */
+                            accent: '#F9ECE5'  /* Subtle Highlight */
+                        }
+                    },
+                    fontFamily: {
+                        fatpix: ['Fatpix', 'Pixelify Sans', 'cursive', 'monospace'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'cozy': '0 10px 30px -5px rgba(255, 123, 84, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.03)',
+                        'cozy-hover': '0 20px 35px -5px rgba(255, 123, 84, 0.22), 0 8px 15px -3px rgba(0, 0, 0, 0.05)',
+                        'card': '0 4px 20px rgba(0,0,0,0.03)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Fallback / Custom Font Setup */
+        @font-face {
+            font-family: 'Fatpix';
+            src: url('https://fonts.cdnfonts.com/s/73117/Fatpix-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            background-color: #FFF6F0;
+            color: #2D2422;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .font-header {
+            font-family: 'Fatpix', 'Pixelify Sans', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF0EC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFC8B8;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF7B54;
+        }
+
+        .glass-nav {
+            background: rgba(255, 246, 240, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .admin-sidebar-item.active {
+            background-color: #FF7B54;
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-peach-200 selection:text-peach-900">
+
+    <!-- PUBLIC SITE CONTAINER -->
+    <div id="publicSiteView">
+        <header class="fixed top-0 left-0 w-full z-40 glass-nav border-b border-peach-200 transition-all duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div id="brandLogoIcon" class="w-10 h-10 rounded-xl bg-peach-500 flex items-center justify-center text-white text-xl font-header font-bold shadow-md group-hover:scale-105 transition-transform">
+                        WJ
+                    </div>
+                    <div class="flex flex-col">
+                        <span id="brandNameText" class="font-header text-xl font-bold text-peach-900 group-hover:text-peach-600 transition-colors">WINSON.STUDIO</span>
+                        <span id="brandRoleText" class="text-[10px] text-cozy-muted font-medium tracking-wider uppercase">Senior Engineer & Manager</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-8 font-medium text-sm text-cozy-muted">
+                    <a href="#about" class="hover:text-peach-600 transition-colors">Tentang Saya</a>
+                    <a href="#skills" class="hover:text-peach-600 transition-colors">Keahlian</a>
+                    <a href="#projects" class="hover:text-peach-600 transition-colors">Project Portfolio</a>
+                    <a href="#contact" class="hover:text-peach-600 transition-colors">Kontak</a>
+                </nav>
+
+                <!-- CTA & Admin Action & Mobile Toggle -->
+                <div class="flex items-center gap-3">
+                    <button onclick="handleAdminTrigger()" class="p-2.5 rounded-xl bg-peach-100 text-peach-800 hover:bg-peach-200 transition-colors font-medium text-xs flex items-center gap-1.5" title="Panel Kelola Admin">
+                        <i class="fa-solid fa-lock text-peach-600"></i> <span class="hidden sm:inline">Admin Panel</span>
+                    </button>
+
+                    <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-peach-500 hover:bg-peach-600 text-white font-medium text-sm rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-regular me-1 fa-paper-plane"></i> Hubungi Saya
+                    </a>
+                    
+                    <button id="mobileMenuBtn" aria-label="Toggle Menu" class="md:hidden p-2.5 rounded-xl bg-peach-100 text-peach-900 hover:bg-peach-200 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-md border-b border-peach-200 px-6 py-6 transition-all">
+                <div class="flex flex-col space-y-4 font-medium text-cozy-text">
+                    <a href="#about" class="mobile-link py-2 border-b border-peach-100 hover:text-peach-600">Tentang Saya</a>
+                    <a href="#skills" class="mobile-link py-2 border-b border-peach-100 hover:text-peach-600">Keahlian</a>
+                    <a href="#projects" class="mobile-link py-2 border-b border-peach-100 hover:text-peach-600">Project Portfolio</a>
+                    <a href="#contact" class="mobile-link py-2 hover:text-peach-600">Kontak</a>
+                    <button onclick="handleAdminTrigger()" class="mobile-link text-center w-full py-2.5 bg-peach-100 text-peach-900 rounded-xl font-medium">
+                        <i class="fa-solid fa-lock text-peach-600 me-1"></i> Masuk Admin Panel
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="pt-24 sm:pt-28">
+            <!-- HERO SECTION -->
+            <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Text Intro -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-peach-100 border border-peach-200 text-peach-700 text-xs sm:text-sm font-semibold">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                            <span id="pubStatusBadge">Terbuka untuk konsultasi & Lead Project</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-header text-peach-900 leading-tight">
+                            Halo, Saya <span class="text-peach-500" id="pubHeroName">Winson Jhonazen</span>
+                        </h1>
+
+                        <h2 class="text-lg sm:text-xl font-semibold text-cozy-muted" id="pubHeroRole">
+                            Senior Software Engineer & Technical Manager
+                        </h2>
+
+                        <p class="text-base sm:text-lg text-cozy-text leading-relaxed max-w-2xl mx-auto lg:mx-0" id="pubHeroBio">
+                            Pengalaman lebih dari 10+ tahun memimpin arsitektur sistem skala besar, membangun web app performa tinggi, dan mengelola tim cross-functional engineering.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
+                            <a href="#projects" class="w-full sm:w-auto px-7 py-3.5 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl shadow-cozy hover:shadow-cozy-hover transition-all flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-layer-group"></i> Lihat Portfolio Project
+                            </a>
+                        </div>
+
+                        <!-- Dynamic Metric Badges -->
+                        <div id="pubMetricsGrid" class="grid grid-cols-3 gap-4 pt-8 border-t border-peach-200/60 max-w-lg mx-auto lg:mx-0">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Profile Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm sm:max-w-md">
+                            <div class="absolute -top-4 -left-4 w-72 h-72 bg-peach-300 rounded-full filter blur-3xl opacity-40 -z-10 animate-pulse"></div>
+                            <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-peach-400 rounded-full filter blur-3xl opacity-30 -z-10"></div>
+
+                            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-peach-200 shadow-cozy relative">
+                                <div class="relative overflow-hidden rounded-2xl mb-6 bg-peach-100 aspect-square border border-peach-200">
+                                    <img id="pubProfileImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80" 
+                                         alt="Profile Image" 
+                                         class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x600/FFC8B8/8A2B12?text=Senior+Dev';">
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="font-header text-lg font-bold text-peach-900" id="pubCardName">Winson Jhonazen</h3>
+                                        <span class="text-xs font-semibold px-2.5 py-1 bg-peach-100 text-peach-700 rounded-lg" id="pubCardRole">Tech Manager</span>
+                                    </div>
+                                    <p class="text-xs text-cozy-muted" id="pubCardBio">Specializing in Fullstack Architecture, Cloud Infrastructure & Engineering Leadership.</p>
+                                    
+                                    <div class="flex items-center gap-3 pt-3 border-t border-peach-100 text-cozy-muted" id="pubSocialsRow">
+                                        <!-- Social icons rendered dynamically -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS SECTION -->
+            <section id="skills" class="py-16 bg-white border-y border-peach-200/80">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <span class="text-peach-500 font-header text-sm font-semibold tracking-wider uppercase">Keahlian & Kompetensi</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold font-header text-peach-900 mt-2">Kombinasi Skill Eksekusi Teknis & Management</h2>
+                        <p class="text-cozy-muted text-sm sm:text-base mt-3">
+                            Tidak hanya menulis kode bersih, tetapi juga mengarahkan strategi produk dan manajemen tim engineering secara efisien.
+                        </p>
+                    </div>
+
+                    <div id="pubSkillsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Dynamic Skills Cards -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                    <div>
+                        <span class="text-peach-500 font-header text-sm font-semibold tracking-wider uppercase">Showcase Karya</span>
+                        <h2 class="text-2xl sm:text-4xl font-bold font-header text-peach-900 mt-1">Project Terpilih</h2>
+                        <p class="text-cozy-muted text-sm mt-2 max-w-xl">
+                            Kumpulan aplikasi web, platform SaaS enterprise, serta mobile app yang pernah saya bangun & kelola.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Filter Categories & Search Bar -->
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 bg-white p-3 rounded-2xl border border-peach-200 shadow-sm">
+                    <div class="flex items-center gap-1 overflow-x-auto pb-2 sm:pb-0 scrollbar-none" id="filterTabs">
+                        <!-- Rendered dynamically via JS -->
+                    </div>
+
+                    <div class="relative w-full sm:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-peach-400 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Cari nama / teknologi..." class="w-full pl-9 pr-4 py-2 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-peach-500 transition-colors">
+                    </div>
+                </div>
+
+                <!-- Project Cards Grid -->
+                <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic cards populated via JS -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-peach-200">
+                    <i class="fa-solid fa-folder-open text-4xl text-peach-300 mb-3"></i>
+                    <h3 class="font-header text-lg font-bold text-peach-900">Project Tidak Ditemukan</h3>
+                    <p class="text-xs text-cozy-muted mt-1">Coba gunakan kata kunci pencarian atau kategori filter lainnya.</p>
+                </div>
+            </section>
+
+            <!-- CONTACT SECTION -->
+            <section id="contact" class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-gradient-to-br from-peach-500 to-peach-600 rounded-3xl p-6 sm:p-12 text-white shadow-cozy relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+                        <div class="lg:col-span-5 space-y-4 text-center lg:text-left">
+                            <span class="px-3 py-1 bg-white/20 text-white rounded-full text-xs font-semibold tracking-wide uppercase">Mari Berkolaborasi</span>
+                            <h2 class="text-3xl sm:text-5xl font-bold font-header leading-tight">Punya Project Menarik?</h2>
+                            <p class="text-peach-100 text-sm sm:text-base leading-relaxed">
+                                Apakah Anda membutuhkan konsultasi teknis, pengerjaan sistem skala besar, atau pembuatan tim engineer? Hubungi saya kapan saja.
+                            </p>
+
+                            <div class="pt-4 space-y-3">
+                                <div class="flex items-center justify-center lg:justify-start gap-3 text-sm">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <span id="pubContactEmail">winson.jhonazen@example.com</span>
+                                </div>
+                                <div class="flex items-center justify-center lg:justify-start gap-3 text-sm">
+                                    <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center">
+                                        <i class="fa-solid fa-location-dot"></i>
+                                    </div>
+                                    <span id="pubContactLocation">Jakarta, Indonesia (Available Remote)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="lg:col-span-7">
+                            <form id="contactForm" onsubmit="handleContactSubmit(event)" class="bg-white text-cozy-text p-6 sm:p-8 rounded-2xl shadow-lg space-y-4">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-cozy-muted uppercase tracking-wider mb-1">Nama Lengkap</label>
+                                        <input type="text" id="cName" required placeholder="Budi Santoso" class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-peach-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-cozy-muted uppercase tracking-wider mb-1">Alamat Email</label>
+                                        <input type="email" id="cEmail" required placeholder="budi@company.com" class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-peach-500">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-cozy-muted uppercase tracking-wider mb-1">Subjek Diskusi</label>
+                                    <input type="text" id="cSubject" required placeholder="Project Redesign / Tech Advisory" class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-peach-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-cozy-muted uppercase tracking-wider mb-1">Pesan / Detail Project</label>
+                                    <textarea id="cMessage" rows="4" required placeholder="Jelaskan kebutuhan project atau jadwal diskusi..." class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none focus:border-peach-500 resize-none"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl shadow-md transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-paper-plane"></i> Kirim Pesan Sekarang
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-white border-t border-peach-200 py-8 text-center sm:text-left">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg bg-peach-500 text-white font-header font-bold flex items-center justify-center text-xs">WJ</div>
+                    <span class="font-header font-bold text-peach-900 text-sm">WINSON.STUDIO &copy; 2026</span>
+                    <span class="text-xs text-cozy-muted">| Engineered with Cozy Peach</span>
+                </div>
+
+                <p class="text-xs text-cozy-muted">
+                    Didesain Mobile-First & Responsive untuk performa terbaik.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ADMIN LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full border border-peach-200 shadow-2xl p-6 sm:p-8 relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-peach-100 text-peach-800 flex items-center justify-center hover:bg-peach-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-peach-500 text-white rounded-2xl flex items-center justify-center text-2xl mx-auto shadow-md mb-3">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="font-header text-xl font-bold text-peach-900">Admin Authentication</h3>
+                <p class="text-xs text-cozy-muted mt-1">Masukkkan kredensial keamanan untuk mengelola backend portofolio Anda.</p>
+            </div>
+
+            <form id="adminLoginForm" onsubmit="processAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Username Admin</label>
+                    <input type="text" id="loginUsername" required placeholder="Username" class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none focus:border-peach-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••" class="w-full px-4 py-3 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none focus:border-peach-500">
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i> Masuk Dashboard Admin
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN ADMIN DASHBOARD CONTAINER -->
+    <div id="adminDashboardView" class="hidden min-h-screen bg-peach-50/50 flex flex-col md:flex-row">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full md:w-64 bg-white border-b md:border-b-0 md:border-r border-peach-200 flex-shrink-0 flex flex-col justify-between">
+            <div>
+                <!-- Admin Brand Header -->
+                <div class="p-6 border-b border-peach-100 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-peach-500 text-white font-header font-bold flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+                        <div>
+                            <span class="font-header font-bold text-peach-900 text-base block">BACKEND</span>
+                            <span class="text-[10px] text-peach-600 font-semibold uppercase tracking-wider">Control Panel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="p-4 space-y-1.5 text-sm font-medium">
+                    <button onclick="switchAdminTab('overview')" id="tabBtn-overview" class="admin-sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <i class="fa-solid fa-chart-pie w-5"></i> <span>Overview Stats</span>
+                    </button>
+                    <button onclick="switchAdminTab('hero')" id="tabBtn-hero" class="admin-sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <i class="fa-solid fa-user-gear w-5"></i> <span>Profil & Hero</span>
+                    </button>
+                    <button onclick="switchAdminTab('skills')" id="tabBtn-skills" class="admin-sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <i class="fa-solid fa-list-check w-5"></i> <span>Kelola Skill</span>
+                    </button>
+                    <button onclick="switchAdminTab('projects')" id="tabBtn-projects" class="admin-sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <i class="fa-solid fa-folder-tree w-5"></i> <span>Kelola Project</span>
+                    </button>
+                    <button onclick="switchAdminTab('messages')" id="tabBtn-messages" class="admin-sidebar-item w-full flex items-center justify-between px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-inbox w-5"></i> <span>Pesan Masuk</span>
+                        </div>
+                        <span id="unreadMsgBadge" class="px-2 py-0.5 bg-peach-500 text-white text-[10px] font-bold rounded-full">0</span>
+                    </button>
+                    <button onclick="switchAdminTab('security')" id="tabBtn-security" class="admin-sidebar-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-cozy-muted hover:bg-peach-50 hover:text-peach-900 transition-colors text-left">
+                        <i class="fa-solid fa-key w-5"></i> <span>Ubah Kredensial</span>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="p-4 border-t border-peach-100 space-y-2">
+                <button onclick="exitAdminView()" class="w-full py-2.5 bg-peach-100 hover:bg-peach-200 text-peach-900 font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-eye"></i> Lihat Web Publik
+                </button>
+                <button onclick="logoutAdmin()" class="w-full py-2.5 bg-red-50 hover:bg-red-100 text-red-700 font-semibold rounded-xl text-xs transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-power-off"></i> Logout Admin
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Dashboard Content Area -->
+        <main class="flex-1 p-6 md:p-10 overflow-y-auto max-w-6xl">
+            <!-- TAB 1: OVERVIEW -->
+            <div id="adminTab-overview" class="admin-tab-content space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold font-header text-peach-900">Dashboard Overview</h2>
+                        <p class="text-xs text-cozy-muted mt-1">Ringkasan status performa web & aktivitas statistik terupdate.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-peach-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-peach-100 text-peach-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-diagram-project"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-cozy-muted block">Total Project</span>
+                            <span id="dashStatProjects" class="text-2xl font-bold font-header text-peach-900">0</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-peach-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-peach-100 text-peach-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-cozy-muted block">Total Skill Card</span>
+                            <span id="dashStatSkills" class="text-2xl font-bold font-header text-peach-900">0</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-peach-200 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-peach-100 text-peach-600 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-cozy-muted block">Pesan Masuk</span>
+                            <span id="dashStatMessages" class="text-2xl font-bold font-header text-peach-900">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-peach-200 p-6 shadow-sm">
+                    <h3 class="font-header text-lg font-bold text-peach-900 mb-4">Aksi Cepat Backend</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button onclick="switchAdminTab('projects')" class="px-4 py-2.5 bg-peach-500 text-white text-xs font-semibold rounded-xl hover:bg-peach-600">
+                            + Kelola Project
+                        </button>
+                        <button onclick="switchAdminTab('hero')" class="px-4 py-2.5 bg-peach-100 text-peach-900 text-xs font-semibold rounded-xl hover:bg-peach-200">
+                            Ubah Bio & Foto Profil
+                        </button>
+                        <button onclick="switchAdminTab('messages')" class="px-4 py-2.5 bg-peach-100 text-peach-900 text-xs font-semibold rounded-xl hover:bg-peach-200">
+                            Cek Pesan Kontak
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: PROFIL & HERO EDIT -->
+            <div id="adminTab-hero" class="admin-tab-content hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold font-header text-peach-900">Pengaturan Profil & Hero Section</h2>
+                    <p class="text-xs text-cozy-muted mt-1">Ubah identitas, judul, deskripsi, sosial media, dan metrik publik Anda.</p>
+                </div>
+
+                <form onsubmit="saveHeroSettings(event)" class="bg-white p-6 sm:p-8 rounded-2xl border border-peach-200 shadow-sm space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Nama Lengkap</label>
+                            <input type="text" id="admHeroName" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Jabatan / Role</label>
+                            <input type="text" id="admHeroRole" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Status Ketersediaan Badge</label>
+                        <input type="text" id="admStatusBadge" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">URL Foto Profil</label>
+                        <input type="url" id="admProfileImg" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Deskripsi Singkat (Bio)</label>
+                        <textarea id="admHeroBio" rows="4" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none resize-none"></textarea>
+                    </div>
+
+                    <div class="border-t border-peach-100 pt-4">
+                        <h4 class="font-header text-sm font-bold text-peach-900 mb-3">Link Sosial Media & Kontak</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-semibold text-cozy-muted uppercase mb-1">GitHub URL</label>
+                                <input type="text" id="admSocialGithub" class="w-full px-3.5 py-2 bg-peach-50 border border-peach-200 rounded-xl text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-cozy-muted uppercase mb-1">LinkedIn URL</label>
+                                <input type="text" id="admSocialLinkedin" class="w-full px-3.5 py-2 bg-peach-50 border border-peach-200 rounded-xl text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-cozy-muted uppercase mb-1">Email Kontak</label>
+                                <input type="email" id="admSocialEmail" class="w-full px-3.5 py-2 bg-peach-50 border border-peach-200 rounded-xl text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-semibold text-cozy-muted uppercase mb-1">Lokasi Domisili</label>
+                                <input type="text" id="admSocialLocation" class="w-full px-3.5 py-2 bg-peach-50 border border-peach-200 rounded-xl text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-peach-100 pt-4">
+                        <h4 class="font-header text-sm font-bold text-peach-900 mb-3">Tampilan Metrics / Stats Header</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-semibold text-cozy-muted uppercase mb-1">Metrik 1 (Value | Label)</label>
+                                <input type="text" id="mVal1" placeholder="10+" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs mb-1">
+                                <input type="text" id="mLbl1" placeholder="Tahun Pengalaman" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-cozy-muted uppercase mb-1">Metrik 2 (Value | Label)</label>
+                                <input type="text" id="mVal2" placeholder="45+" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs mb-1">
+                                <input type="text" id="mLbl2" placeholder="Project Selesai" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-semibold text-cozy-muted uppercase mb-1">Metrik 3 (Value | Label)</label>
+                                <input type="text" id="mVal3" placeholder="99%" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs mb-1">
+                                <input type="text" id="mLbl3" placeholder="Kepuasan Klien" class="w-full px-3 py-1.5 bg-peach-50 border border-peach-200 rounded-lg text-xs">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="px-6 py-3 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl shadow-md transition-colors">
+                        <i class="fa-solid fa-floppy-disk me-1"></i> Simpan Perubahan Profil
+                    </button>
+                </form>
+            </div>
+
+            <!-- TAB 3: KELOLA SKILL -->
+            <div id="adminTab-skills" class="admin-tab-content hidden space-y-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold font-header text-peach-900">Manajemen Kartu Skill</h2>
+                        <p class="text-xs text-cozy-muted mt-1">Tambah, edit, atau hapus kompetensi teknis & manajemen.</p>
+                    </div>
+                    <button onclick="openSkillFormModal()" class="px-4 py-2.5 bg-peach-500 hover:bg-peach-600 text-white text-xs font-semibold rounded-xl shadow-sm">
+                        + Tambah Skill Baru
+                    </button>
+                </div>
+
+                <div id="adminSkillsTable" class="bg-white rounded-2xl border border-peach-200 overflow-hidden shadow-sm">
+                    <!-- Dynamic skills table -->
+                </div>
+            </div>
+
+            <!-- TAB 4: KELOLA PROJECT -->
+            <div id="adminTab-projects" class="admin-tab-content hidden space-y-6">
+                <div class="flex items-center justify-between flex-wrap gap-3">
+                    <div>
+                        <h2 class="text-2xl font-bold font-header text-peach-900">Manajemen Portfolio Project</h2>
+                        <p class="text-xs text-cozy-muted mt-1">Kelola seluruh item kartu proyek, link, kategori, dan gambar.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="openCategoryManagerModal()" class="px-4 py-2.5 bg-peach-100 hover:bg-peach-200 text-peach-900 text-xs font-semibold rounded-xl transition-colors flex items-center gap-1.5">
+                            <i class="fa-solid fa-tags text-peach-600"></i> Kelola Kategori
+                        </button>
+                        <button onclick="openProjectEditModal(null)" class="px-4 py-2.5 bg-peach-500 hover:bg-peach-600 text-white text-xs font-semibold rounded-xl shadow-sm">
+                            + Tambah Project Baru
+                        </button>
+                    </div>
+                </div>
+
+                <div id="adminProjectsTable" class="bg-white rounded-2xl border border-peach-200 overflow-hidden shadow-sm">
+                    <!-- Dynamic projects table -->
+                </div>
+            </div>
+
+            <!-- TAB 5: KOTAK MASUK / MESSAGES -->
+            <div id="adminTab-messages" class="admin-tab-content hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold font-header text-peach-900">Kotak Masuk Pesan Kontak</h2>
+                    <p class="text-xs text-cozy-muted mt-1">Daftar formulir pesan dari calon klien atau pengunjung web Anda.</p>
+                </div>
+
+                <div id="adminMessagesList" class="space-y-4">
+                    <!-- Dynamic message list -->
+                </div>
+            </div>
+
+            <!-- TAB 6: PENGATURAN KEAMANAN / CREDENTIALS -->
+            <div id="adminTab-security" class="admin-tab-content hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-bold font-header text-peach-900">Keamanan Credentials Admin</h2>
+                    <p class="text-xs text-cozy-muted mt-1">Ubah username dan password otentikasi login admin Anda.</p>
+                </div>
+
+                <form onsubmit="saveSecurityCredentials(event)" class="bg-white p-6 sm:p-8 rounded-2xl border border-peach-200 shadow-sm max-w-lg space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Username Admin Baru</label>
+                        <input type="text" id="admNewUsername" required class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Password Baru</label>
+                        <input type="password" id="admNewPassword" required placeholder="Minimal 6 Karakter" class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Konfirmasi Password Baru</label>
+                        <input type="password" id="admConfirmPassword" required placeholder="Ketik Ulang Password" class="w-full px-4 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-sm focus:outline-none">
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl shadow-md transition-colors">
+                        Simpan Kredensial Baru
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- EDIT/ADD PROJECT MODAL (ADMIN) -->
+    <div id="editProjectModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full border border-peach-200 shadow-2xl p-6 sm:p-8 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeEditProjectModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-peach-100 text-peach-800 flex items-center justify-center hover:bg-peach-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 id="projectModalTitle" class="font-header text-xl font-bold text-peach-900 mb-4">Edit Project</h3>
+
+            <form id="projectEditorForm" onsubmit="saveProjectData(event)" class="space-y-4">
+                <input type="hidden" id="pEditId">
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Judul Project</label>
+                    <input type="text" id="pEditTitle" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Kategori</label>
+                        <select id="pEditCategory" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Teknologi (Koma)</label>
+                        <input type="text" id="pEditTech" placeholder="React, Go, AWS" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">URL Gambar Header</label>
+                    <input type="url" id="pEditImage" placeholder="https://..." required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Link Live Demo</label>
+                        <input type="text" id="pEditDemo" placeholder="#" class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Link Repository</label>
+                        <input type="text" id="pEditGithub" placeholder="#" class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Deskripsi Ringkas</label>
+                    <textarea id="pEditDesc" rows="3" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none resize-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl transition-colors">
+                    Simpan Data Project
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CATEGORY MANAGEMENT MODAL (ADMIN) -->
+    <div id="categoryManagerModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full border border-peach-200 shadow-2xl p-6 sm:p-8 relative">
+            <button onclick="closeCategoryManagerModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-peach-100 text-peach-800 flex items-center justify-center hover:bg-peach-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 class="font-header text-xl font-bold text-peach-900 mb-1">Kelola Kategori Project</h3>
+            <p class="text-xs text-cozy-muted mb-4">Buat kategori baru atau hapus kategori yang sudah ada.</p>
+
+            <!-- Form Tambah Kategori Baru -->
+            <form onsubmit="addCategoryItem(event)" class="space-y-3 mb-6 bg-peach-50 p-4 rounded-2xl border border-peach-200">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-semibold text-cozy-muted uppercase mb-1">ID Kategori (Unik)</label>
+                        <input type="text" id="catKeyInput" required placeholder="misal: ai" class="w-full px-3 py-2 bg-white border border-peach-200 rounded-xl text-xs focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-semibold text-cozy-muted uppercase mb-1">Nama Tampilan</label>
+                        <input type="text" id="catLabelInput" required placeholder="misal: AI / ML Project" class="w-full px-3 py-2 bg-white border border-peach-200 rounded-xl text-xs focus:outline-none">
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-2 bg-peach-500 hover:bg-peach-600 text-white text-xs font-semibold rounded-xl transition-colors">
+                    + Tambah Kategori
+                </button>
+            </form>
+
+            <!-- List Kategori -->
+            <div id="categoryListContainer" class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                <!-- Dynamic categories list -->
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT/ADD SKILL MODAL (ADMIN) -->
+    <div id="editSkillModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full border border-peach-200 shadow-2xl p-6 sm:p-8 relative">
+            <button onclick="closeEditSkillModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-peach-100 text-peach-800 flex items-center justify-center hover:bg-peach-200">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <h3 id="skillModalTitle" class="font-header text-xl font-bold text-peach-900 mb-4">Edit Skill</h3>
+
+            <form id="skillEditorForm" onsubmit="saveSkillData(event)" class="space-y-4">
+                <input type="hidden" id="sEditId">
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Icon FontAwesome Class</label>
+                    <input type="text" id="sEditIcon" placeholder="fa-solid fa-users-gear" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Judul Skill / Kompetensi</label>
+                    <input type="text" id="sEditTitle" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Deskripsi Singkat</label>
+                    <textarea id="sEditDesc" rows="3" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none resize-none"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-cozy-muted uppercase mb-1">Tags / Sub-skills (Pisahkan Koma)</label>
+                    <input type="text" id="sEditTags" placeholder="Agile, Scrum, Strategy" required class="w-full px-3.5 py-2.5 bg-peach-50 border border-peach-200 rounded-xl text-xs sm:text-sm focus:outline-none">
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl transition-colors">
+                    Simpan Data Skill
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Project Details View Modal (Public) -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-peach-200 shadow-2xl p-6 sm:p-8 relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-peach-100 text-peach-800 flex items-center justify-center hover:bg-peach-200 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-peach-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 border border-peach-700">
+        <i class="fa-solid fa-circle-check text-peach-400 text-lg"></i>
+        <span id="toastMsg" class="text-xs sm:text-sm font-medium">Operasi berhasil dilakukan!</span>
+    </div>
+
+    <script>
+        // Initial Default Database Schema
+        const defaultSiteData = {
+            auth: {
+                username: "Admin",
+                password: "12121288"
+            },
+            profile: {
+                name: "Winson Jhonazen",
+                role: "Senior Software Engineer & Technical Manager",
+                statusBadge: "Terbuka untuk konsultasi & Lead Project",
+                profileImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+                bio: "Pengalaman lebih dari 10+ tahun memimpin arsitektur sistem skala besar, membangun web app performa tinggi, dan mengelola tim cross-functional engineering. Fokus menyelaraskan inovasi teknologi dengan tujuan bisnis.",
+                metrics: [
+                    { value: "10+", label: "Tahun Pengalaman" },
+                    { value: "45+", label: "Project Selesai" },
+                    { value: "99%", label: "Kepuasan Klien" }
+                ],
+                socials: {
+                    github: "#",
+                    linkedin: "#",
+                    email: "winson.jhonazen@example.com",
+                    location: "Jakarta, Indonesia (Available Remote Worldwide)"
+                }
+            },
+            categories: [
+                { id: "web", label: "Web App" },
+                { id: "enterprise", label: "Enterprise Solution" },
+                { id: "mobile", label: "Mobile App" }
+            ],
+            skills: [
+                {
+                    id: 101,
+                    icon: "fa-solid fa-users-gear",
+                    title: "Engineering Leadership",
+                    description: "Pengalaman mengarahkan tim 15+ engineer, agile scrum management, OKR mapping, & mentoring software architecture.",
+                    tags: ["Agile / Scrum", "Team Hiring", "Tech Strategy"]
+                },
+                {
+                    id: 102,
+                    icon: "fa-solid fa-code",
+                    title: "Fullstack Architecture",
+                    description: "Biasa merancang scalable web apps dengan React, Vue, Node.js, Python, PostgreSQL, dan Redis.",
+                    tags: ["TypeScript", "React / Next.js", "Node.js / Go"]
+                },
+                {
+                    id: 103,
+                    icon: "fa-solid fa-server",
+                    title: "Cloud & Infrastructure",
+                    description: "Pengelolaan CI/CD pipeline, Docker containerization, AWS cloud architecture, dan High Availability deployment.",
+                    tags: ["AWS / GCP", "Docker & K8s", "CI/CD Pipelines"]
+                }
+            ],
+            projects: [
+                {
+                    id: 1,
+                    title: "NusaBank B2B Financial Platform",
+                    category: "enterprise",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                    description: "Platform core banking B2B dengan integrasi real-time settlement, anti-fraud AI monitoring, dan dashboard analytics tingkat tinggi.",
+                    techStack: ["React", "Go", "PostgreSQL", "Kafka", "Docker"],
+                    demoUrl: "#",
+                    githubUrl: "#"
+                },
+                {
+                    id: 2,
+                    title: "OmniChannel E-Commerce SaaS",
+                    category: "web",
+                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                    description: "Sistem manajemen inventaris toko online tersinkronisasi multi-marketplace dengan sistem prediktif analitik stok otomatis.",
+                    techStack: ["Next.js", "Node.js", "Redis", "Tailwind CSS"],
+                    demoUrl: "#",
+                    githubUrl: "#"
+                },
+                {
+                    id: 3,
+                    title: "HealthConnect Telemedicine App",
+                    category: "mobile",
+                    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80",
+                    description: "Aplikasi konsultasi medis online dengan video call terenkripsi end-to-end, resep digital, dan pengiriman obat instan.",
+                    techStack: ["React Native", "WebRTC", "Express", "MongoDB"],
+                    demoUrl: "#",
+                    githubUrl: "#"
+                }
+            ],
+            messages: []
+        };
+
+        // Initialize Central Data Store
+        let siteData = JSON.parse(localStorage.getItem('dev_portfolio_full_data')) || defaultSiteData;
+        
+        // Data Migration check if dynamic categories missing
+        if (!siteData.categories) {
+            siteData.categories = [
+                { id: "web", label: "Web App" },
+                { id: "enterprise", label: "Enterprise Solution" },
+                { id: "mobile", label: "Mobile App" }
+            ];
+        }
+
+        let activeCategory = 'all';
+        let isAdminLoggedIn = false;
+
+        function saveSiteData() {
+            localStorage.setItem('dev_portfolio_full_data', JSON.stringify(siteData));
+            renderPublicView();
+            if (isAdminLoggedIn) {
+                renderAdminDashboard();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPublicView();
+            setupMobileMenu();
+        });
+
+        function renderFilterTabs() {
+            const tabsContainer = document.getElementById('filterTabs');
+            if (!tabsContainer) return;
+
+            let html = `
+                <button onclick="filterProjects('all')" class="filter-btn ${activeCategory === 'all' ? 'bg-peach-500 text-white shadow-sm' : 'text-cozy-muted hover:text-peach-900 hover:bg-peach-50'} px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap">Semua</button>
+            `;
+
+            siteData.categories.forEach(cat => {
+                const isActive = activeCategory === cat.id;
+                html += `
+                    <button onclick="filterProjects('${cat.id}')" class="filter-btn ${isActive ? 'bg-peach-500 text-white shadow-sm' : 'text-cozy-muted hover:text-peach-900 hover:bg-peach-50'} px-4 py-2 rounded-xl text-xs sm:text-sm font-medium whitespace-nowrap">${cat.label}</button>
+                `;
+            });
+
+            tabsContainer.innerHTML = html;
+        }
+
+        function renderPublicView() {
+            // Render Profile Header & Hero
+            const p = siteData.profile;
+            document.getElementById('brandNameText').innerText = p.name.toUpperCase();
+            document.getElementById('brandRoleText').innerText = p.role;
+            document.getElementById('pubStatusBadge').innerText = p.statusBadge;
+            document.getElementById('pubHeroName').innerText = p.name;
+            document.getElementById('pubHeroRole').innerText = p.role;
+            document.getElementById('pubHeroBio').innerText = p.bio;
+            document.getElementById('pubProfileImg').src = p.profileImage;
+            document.getElementById('pubCardName').innerText = p.name;
+            document.getElementById('pubCardRole').innerText = p.role;
+            document.getElementById('pubCardBio').innerText = p.bio;
+            document.getElementById('pubContactEmail').innerText = p.socials.email || "email@example.com";
+            document.getElementById('pubContactLocation').innerText = p.socials.location || "Indonesia";
+
+            // Render Metrics
+            const metricsContainer = document.getElementById('pubMetricsGrid');
+            metricsContainer.innerHTML = p.metrics.map(m => `
+                <div class="text-center lg:text-left">
+                    <span class="block text-2xl sm:text-3xl font-header font-bold text-peach-600">${m.value}</span>
+                    <span class="text-xs sm:text-sm text-cozy-muted">${m.label}</span>
+                </div>
+            `).join('');
+
+            // Render Socials
+            const socialsContainer = document.getElementById('pubSocialsRow');
+            socialsContainer.innerHTML = `
+                <a href="${p.socials.github || '#'}" class="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center hover:bg-peach-500 hover:text-white transition-colors" title="GitHub"><i class="fa-brands fa-github text-base"></i></a>
+                <a href="${p.socials.linkedin || '#'}" class="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center hover:bg-peach-500 hover:text-white transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin-in text-base"></i></a>
+                <a href="mailto:${p.socials.email || '#'}" class="w-9 h-9 rounded-lg bg-peach-50 flex items-center justify-center hover:bg-peach-500 hover:text-white transition-colors" title="Email"><i class="fa-solid fa-envelope text-base"></i></a>
+            `;
+
+            // Render Skills Cards
+            const skillsContainer = document.getElementById('pubSkillsGrid');
+            skillsContainer.innerHTML = siteData.skills.map(s => `
+                <div class="p-6 rounded-2xl bg-peach-50 border border-peach-200 hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-peach-500 text-white flex items-center justify-center text-xl mb-4 shadow-sm">
+                        <i class="${s.icon}"></i>
+                    </div>
+                    <h3 class="font-header text-lg font-bold text-peach-900 mb-2">${s.title}</h3>
+                    <p class="text-xs text-cozy-muted mb-4">${s.description}</p>
+                    <div class="flex flex-wrap gap-2">
+                        ${s.tags.map(t => `<span class="px-2.5 py-1 bg-white text-peach-800 text-xs font-medium rounded-md border border-peach-200">${t}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            // Render Categories Tabs & Projects
+            renderFilterTabs();
+            renderProjects();
+        }
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const emptyState = document.getElementById('emptyState');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = siteData.projects.filter(p => {
+                const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+                const matchesSearch = p.title.toLowerCase().includes(searchVal) || 
+                                     p.description.toLowerCase().includes(searchVal) ||
+                                     p.techStack.some(t => t.toLowerCase().includes(searchVal));
+                return matchesCategory && matchesSearch;
+            });
+
+            grid.innerHTML = '';
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-3xl border border-peach-200 overflow-hidden shadow-card hover:shadow-cozy-hover transition-all duration-300 flex flex-col group transform hover:-translate-y-1";
+                
+                const categoryObj = siteData.categories.find(c => c.id === p.category);
+                const categoryLabel = categoryObj ? categoryObj.label : (p.category || 'Project');
+                const techBadges = p.techStack.map(t => `<span class="px-2.5 py-1 bg-peach-50 text-peach-800 text-[11px] font-medium rounded-lg border border-peach-200">${t}</span>`).join(' ');
+
+                card.innerHTML = `
+                    <div class="relative overflow-hidden aspect-video bg-peach-100 border-b border-peach-200">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/800x450/FFE0D8/8A2B12?text=Project+Preview';">
+                        <span class="absolute top-3 left-3 px-3 py-1 bg-white/95 backdrop-blur-md text-peach-900 text-xs font-semibold rounded-full shadow-sm">${categoryLabel}</span>
+                    </div>
+
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <h3 class="font-header text-lg font-bold text-peach-900 group-hover:text-peach-600 transition-colors line-clamp-1">${p.title}</h3>
+                            <p class="text-xs sm:text-sm text-cozy-muted line-clamp-2 leading-relaxed">${p.description}</p>
+                        </div>
+
+                        <div>
+                            <div class="flex flex-wrap gap-1.5 mb-4">${techBadges}</div>
+
+                            <div class="pt-3 border-t border-peach-100 flex items-center justify-end">
+                                <button onclick="openProjectModal(${p.id})" class="text-xs font-semibold px-3.5 py-2 bg-peach-100 hover:bg-peach-500 hover:text-white text-peach-800 rounded-lg transition-colors flex items-center gap-1.5">
+                                    Detail Project <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProjects(category) {
+            activeCategory = category;
+            renderFilterTabs();
+            renderProjects();
+        }
+
+        function handleSearch() {
+            renderProjects();
+        }
+
+        function handleAdminTrigger() {
+            if (isAdminLoggedIn) {
+                showAdminDashboard();
+            } else {
+                document.getElementById('loginModal').classList.remove('hidden');
+            }
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+
+        function processAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUsername').value;
+            const p = document.getElementById('loginPassword').value;
+
+            if (u === siteData.auth.username && p === siteData.auth.password) {
+                isAdminLoggedIn = true;
+                closeLoginModal();
+                showAdminDashboard();
+                showToast("Berhasil login sebagai Admin!");
+            } else {
+                showToast("Username atau Password salah!");
+            }
+        }
+
+        function showAdminDashboard() {
+            document.getElementById('publicSiteView').classList.add('hidden');
+            document.getElementById('adminDashboardView').classList.remove('hidden');
+            switchAdminTab('overview');
+            renderAdminDashboard();
+        }
+
+        function exitAdminView() {
+            document.getElementById('adminDashboardView').classList.add('hidden');
+            document.getElementById('publicSiteView').classList.remove('hidden');
+        }
+
+        function logoutAdmin() {
+            isAdminLoggedIn = false;
+            exitAdminView();
+            showToast("Anda telah logout dari Admin Panel.");
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-sidebar-item').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(`adminTab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tabBtn-${tabName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+
+        function renderAdminDashboard() {
+            // Stats Overview
+            document.getElementById('dashStatProjects').innerText = siteData.projects.length;
+            document.getElementById('dashStatSkills').innerText = siteData.skills.length;
+            document.getElementById('dashStatMessages').innerText = siteData.messages.length;
+            document.getElementById('unreadMsgBadge').innerText = siteData.messages.length;
+
+            // Populate Hero Form
+            const p = siteData.profile;
+            document.getElementById('admHeroName').value = p.name;
+            document.getElementById('admHeroRole').value = p.role;
+            document.getElementById('admStatusBadge').value = p.statusBadge;
+            document.getElementById('admProfileImg').value = p.profileImage;
+            document.getElementById('admHeroBio').value = p.bio;
+            document.getElementById('admSocialGithub').value = p.socials.github;
+            document.getElementById('admSocialLinkedin').value = p.socials.linkedin;
+            document.getElementById('admSocialEmail').value = p.socials.email;
+            document.getElementById('admSocialLocation').value = p.socials.location;
+
+            document.getElementById('mVal1').value = p.metrics[0]?.value || '';
+            document.getElementById('mLbl1').value = p.metrics[0]?.label || '';
+            document.getElementById('mVal2').value = p.metrics[1]?.value || '';
+            document.getElementById('mLbl2').value = p.metrics[1]?.label || '';
+            document.getElementById('mVal3').value = p.metrics[2]?.value || '';
+            document.getElementById('mLbl3').value = p.metrics[2]?.label || '';
+
+            // Populate Security Form
+            document.getElementById('admNewUsername').value = siteData.auth.username;
+
+            // Render Skills Table
+            renderAdminSkillsTable();
+
+            // Render Projects Table
+            renderAdminProjectsTable();
+
+            // Render Messages List
+            renderAdminMessagesList();
+        }
+
+        function saveHeroSettings(e) {
+            e.preventDefault();
+            siteData.profile.name = document.getElementById('admHeroName').value;
+            siteData.profile.role = document.getElementById('admHeroRole').value;
+            siteData.profile.statusBadge = document.getElementById('admStatusBadge').value;
+            siteData.profile.profileImage = document.getElementById('admProfileImg').value;
+            siteData.profile.bio = document.getElementById('admHeroBio').value;
+
+            siteData.profile.socials.github = document.getElementById('admSocialGithub').value;
+            siteData.profile.socials.linkedin = document.getElementById('admSocialLinkedin').value;
+            siteData.profile.socials.email = document.getElementById('admSocialEmail').value;
+            siteData.profile.socials.location = document.getElementById('admSocialLocation').value;
+
+            siteData.profile.metrics = [
+                { value: document.getElementById('mVal1').value, label: document.getElementById('mLbl1').value },
+                { value: document.getElementById('mVal2').value, label: document.getElementById('mLbl2').value },
+                { value: document.getElementById('mVal3').value, label: document.getElementById('mLbl3').value }
+            ];
+
+            saveSiteData();
+            showToast("Profil berhasil diperbarui!");
+        }
+
+        // SKILLS CRUD
+        function renderAdminSkillsTable() {
+            const table = document.getElementById('adminSkillsTable');
+            if (!table) return;
+            table.innerHTML = `
+                <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                        <tr class="bg-peach-100 text-peach-900 border-b border-peach-200">
+                            <th class="p-3">Icon</th>
+                            <th class="p-3">Judul Skill</th>
+                            <th class="p-3 hidden sm:table-cell">Tags / Sub-skills</th>
+                            <th class="p-3 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-peach-100">
+                        ${siteData.skills.map(s => `
+                            <tr>
+                                <td class="p-3 text-lg text-peach-600">
+                                    <i class="${s.icon}"></i>
+                                </td>
+                                <td class="p-3 font-semibold text-peach-900">${s.title}</td>
+                                <td class="p-3 hidden sm:table-cell">
+                                    <div class="flex flex-wrap gap-1">
+                                        ${s.tags.map(t => `<span class="px-2 py-0.5 bg-peach-100 text-peach-800 rounded text-[10px] font-medium">${t}</span>`).join('')}
+                                    </div>
+                                </td>
+                                <td class="p-3 text-right space-x-2">
+                                    <button onclick="openEditSkillModal(${s.id})" class="px-2.5 py-1 bg-peach-100 text-peach-800 rounded-lg hover:bg-peach-200"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="deleteSkillItem(${s.id})" class="px-2.5 py-1 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function openSkillFormModal() {
+            openEditSkillModal(null);
+        }
+
+        function openEditSkillModal(id) {
+            if (id) {
+                const s = siteData.skills.find(item => item.id === id);
+                if (!s) return;
+                document.getElementById('sEditId').value = s.id;
+                document.getElementById('sEditIcon').value = s.icon;
+                document.getElementById('sEditTitle').value = s.title;
+                document.getElementById('sEditDesc').value = s.description;
+                document.getElementById('sEditTags').value = s.tags.join(', ');
+                document.getElementById('skillModalTitle').innerText = "Edit Skill";
+            } else {
+                document.getElementById('sEditId').value = '';
+                document.getElementById('skillEditorForm').reset();
+                document.getElementById('skillModalTitle').innerText = "Tambah Skill Baru";
+            }
+            document.getElementById('editSkillModal').classList.remove('hidden');
+        }
+
+        function closeEditSkillModal() {
+            document.getElementById('editSkillModal').classList.add('hidden');
+        }
+
+        function saveSkillData(e) {
+            e.preventDefault();
+            const id = document.getElementById('sEditId').value;
+            const sObj = {
+                id: id ? Number(id) : Date.now(),
+                icon: document.getElementById('sEditIcon').value,
+                title: document.getElementById('sEditTitle').value,
+                description: document.getElementById('sEditDesc').value,
+                tags: document.getElementById('sEditTags').value.split(',').map(t => t.trim()).filter(Boolean)
+            };
+
+            if (id) {
+                const idx = siteData.skills.findIndex(s => s.id == id);
+                if (idx !== -1) siteData.skills[idx] = sObj;
+            } else {
+                siteData.skills.push(sObj);
+            }
+
+            saveSiteData();
+            closeEditSkillModal();
+            showToast("Data Skill tersimpan!");
+        }
+
+        function deleteSkillItem(id) {
+            siteData.skills = siteData.skills.filter(s => s.id !== id);
+            saveSiteData();
+            showToast("Skill berhasil dihapus.");
+        }
+
+        // CATEGORY MANAGEMENT
+        function openCategoryManagerModal() {
+            renderCategoryListInModal();
+            document.getElementById('categoryManagerModal').classList.remove('hidden');
+        }
+
+        function closeCategoryManagerModal() {
+            document.getElementById('categoryManagerModal').classList.add('hidden');
+        }
+
+        function renderCategoryListInModal() {
+            const container = document.getElementById('categoryListContainer');
+            if (siteData.categories.length === 0) {
+                container.innerHTML = `<p class="text-xs text-cozy-muted text-center py-4">Belum ada kategori diset.</p>`;
+                return;
+            }
+
+            container.innerHTML = siteData.categories.map(c => `
+                <div class="flex items-center justify-between p-3 bg-white border border-peach-200 rounded-xl">
+                    <div>
+                        <span class="font-bold text-xs text-peach-900 block">${c.label}</span>
+                        <span class="text-[10px] text-cozy-muted font-mono">ID: ${c.id}</span>
+                    </div>
+                    <button onclick="deleteCategoryItem('${c.id}')" class="px-2.5 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200 transition-colors" title="Hapus Kategori">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addCategoryItem(e) {
+            e.preventDefault();
+            const rawKey = document.getElementById('catKeyInput').value.trim().toLowerCase().replace(/\s+/g, '-');
+            const label = document.getElementById('catLabelInput').value.trim();
+
+            if (!rawKey || !label) return;
+
+            if (siteData.categories.some(c => c.id === rawKey)) {
+                showToast("ID Kategori sudah terpakai!");
+                return;
+            }
+
+            siteData.categories.push({ id: rawKey, label });
+            saveSiteData();
+            renderCategoryListInModal();
+
+            document.getElementById('catKeyInput').value = '';
+            document.getElementById('catLabelInput').value = '';
+            showToast("Kategori baru berhasil ditambahkan!");
+        }
+
+        function deleteCategoryItem(catId) {
+            if (siteData.categories.length <= 1) {
+                showToast("Minimal harus ada 1 kategori aktif.");
+                return;
+            }
+
+            siteData.categories = siteData.categories.filter(c => c.id !== catId);
+            
+            // Re-assign existing projects under deleted category to first available category
+            const fallbackCat = siteData.categories[0].id;
+            siteData.projects.forEach(p => {
+                if (p.category === catId) p.category = fallbackCat;
+            });
+
+            if (activeCategory === catId) activeCategory = 'all';
+
+            saveSiteData();
+            renderCategoryListInModal();
+            showToast("Kategori berhasil dihapus.");
+        }
+
+        // PROJECT CRUD
+        function renderAdminProjectsTable() {
+            const table = document.getElementById('adminProjectsTable');
+            table.innerHTML = `
+                <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                    <thead>
+                        <tr class="bg-peach-100 text-peach-900 border-b border-peach-200">
+                            <th class="p-3">Cover</th>
+                            <th class="p-3">Judul Project</th>
+                            <th class="p-3 hidden sm:table-cell">Kategori</th>
+                            <th class="p-3 text-right">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-peach-100">
+                        ${siteData.projects.map(p => {
+                            const categoryObj = siteData.categories.find(c => c.id === p.category);
+                            const catLabel = categoryObj ? categoryObj.label : p.category;
+                            return `
+                                <tr>
+                                    <td class="p-3">
+                                        <img src="${p.image}" class="w-12 h-8 rounded object-cover border border-peach-200" onerror="this.src='https://placehold.co/100x100?text=P';">
+                                    </td>
+                                    <td class="p-3 font-semibold text-peach-900">${p.title}</td>
+                                    <td class="p-3 hidden sm:table-cell"><span class="px-2 py-0.5 bg-peach-100 text-peach-800 rounded text-[10px] uppercase font-bold">${catLabel}</span></td>
+                                    <td class="p-3 text-right space-x-2">
+                                        <button onclick="openProjectEditModal(${p.id})" class="px-2.5 py-1 bg-peach-100 text-peach-800 rounded-lg hover:bg-peach-200"><i class="fa-solid fa-pen"></i></button>
+                                        <button onclick="deleteProjectItem(${p.id})" class="px-2.5 py-1 bg-red-100 text-red-700 rounded-lg hover:bg-red-200"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            `;
+                        }).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function populateCategoryOptionsInSelect(selectedCategory) {
+            const selectEl = document.getElementById('pEditCategory');
+            if (!selectEl) return;
+
+            selectEl.innerHTML = siteData.categories.map(c => 
+                `<option value="${c.id}" ${c.id === selectedCategory ? 'selected' : ''}>${c.label}</option>`
+            ).join('');
+        }
+
+        function openProjectEditModal(id) {
+            if (id) {
+                const p = siteData.projects.find(item => item.id === id);
+                if (!p) return;
+                document.getElementById('pEditId').value = p.id;
+                document.getElementById('pEditTitle').value = p.title;
+                populateCategoryOptionsInSelect(p.category);
+                document.getElementById('pEditTech').value = p.techStack.join(', ');
+                document.getElementById('pEditImage').value = p.image;
+                document.getElementById('pEditDemo').value = p.demoUrl;
+                document.getElementById('pEditGithub').value = p.githubUrl;
+                document.getElementById('pEditDesc').value = p.description;
+                document.getElementById('projectModalTitle').innerText = "Edit Project";
+            } else {
+                document.getElementById('pEditId').value = '';
+                document.getElementById('projectEditorForm').reset();
+                populateCategoryOptionsInSelect(siteData.categories[0]?.id || 'web');
+                document.getElementById('projectModalTitle').innerText = "Tambah Project Baru";
+            }
+            document.getElementById('editProjectModal').classList.remove('hidden');
+        }
+
+        function closeEditProjectModal() {
+            document.getElementById('editProjectModal').classList.add('hidden');
+        }
+
+        function saveProjectData(e) {
+            e.preventDefault();
+            const id = document.getElementById('pEditId').value;
+            const categoryVal = document.getElementById('pEditCategory').value;
+
+            const pObj = {
+                id: id ? Number(id) : Date.now(),
+                title: document.getElementById('pEditTitle').value,
+                category: categoryVal,
+                image: document.getElementById('pEditImage').value,
+                description: document.getElementById('pEditDesc').value,
+                techStack: document.getElementById('pEditTech').value.split(',').map(t => t.trim()),
+                demoUrl: document.getElementById('pEditDemo').value || '#',
+                githubUrl: document.getElementById('pEditGithub').value || '#'
+            };
+
+            if (id) {
+                const idx = siteData.projects.findIndex(p => p.id == id);
+                if (idx !== -1) siteData.projects[idx] = pObj;
+            } else {
+                siteData.projects.unshift(pObj);
+            }
+
+            saveSiteData();
+            closeEditProjectModal();
+            showToast("Project tersimpan!");
+        }
+
+        function deleteProjectItem(id) {
+            siteData.projects = siteData.projects.filter(p => p.id !== id);
+            saveSiteData();
+            showToast("Project berhasil dihapus.");
+        }
+
+        // MESSAGES INBOX
+        function renderAdminMessagesList() {
+            const list = document.getElementById('adminMessagesList');
+            if (siteData.messages.length === 0) {
+                list.innerHTML = `
+                    <div class="p-8 text-center bg-white rounded-2xl border border-peach-200 text-cozy-muted text-sm">
+                        Belum ada pesan masuk dari pengunjung.
+                    </div>
+                `;
+                return;
+            }
+
+            list.innerHTML = siteData.messages.map((m, idx) => `
+                <div class="bg-white p-5 rounded-2xl border border-peach-200 shadow-sm flex flex-col justify-between space-y-3">
+                    <div class="flex items-start justify-between border-b border-peach-100 pb-3">
+                        <div>
+                            <h4 class="font-bold font-header text-peach-900">${m.name} <span class="text-xs font-normal text-cozy-muted">&lt;${m.email}&gt;</span></h4>
+                            <span class="text-xs font-semibold text-peach-600">Subjek: ${m.subject}</span>
+                        </div>
+                        <span class="text-[10px] bg-peach-100 px-2.5 py-1 text-peach-800 rounded-full font-medium">${m.date}</span>
+                    </div>
+                    <p class="text-xs text-cozy-text leading-relaxed">${m.message}</p>
+                    <div class="text-right pt-2">
+                        <button onclick="deleteMessage(${idx})" class="text-xs text-red-600 font-semibold hover:underline">Hapus Pesan</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteMessage(index) {
+            siteData.messages.splice(index, 1);
+            saveSiteData();
+            showToast("Pesan dihapus.");
+        }
+
+        // SECURITY SETTINGS
+        function saveSecurityCredentials(e) {
+            e.preventDefault();
+            const newU = document.getElementById('admNewUsername').value;
+            const newP = document.getElementById('admNewPassword').value;
+            const confirmP = document.getElementById('admConfirmPassword').value;
+
+            if (newP !== confirmP) {
+                showToast("Konfirmasi password tidak cocok!");
+                return;
+            }
+
+            siteData.auth.username = newU;
+            siteData.auth.password = newP;
+            saveSiteData();
+            showToast("Kredensial Login Admin berhasil diperbarui!");
+        }
+
+        // PUBLIC CONTACT FORM SUBMISSION
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('cName').value;
+            const email = document.getElementById('cEmail').value;
+            const subject = document.getElementById('cSubject').value;
+            const message = document.getElementById('cMessage').value;
+
+            const msgObj = {
+                name,
+                email,
+                subject,
+                message,
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
+            };
+
+            siteData.messages.unshift(msgObj);
+            saveSiteData();
+
+            e.target.reset();
+            showToast("Pesan Anda telah berhasil terkirim!");
+        }
+
+        function openProjectModal(id) {
+            const project = siteData.projects.find(p => p.id === id);
+            if (!project) return;
+
+            const categoryObj = siteData.categories.find(c => c.id === project.category);
+            const categoryLabel = categoryObj ? categoryObj.label : (project.category || 'Project');
+
+            const modalContent = document.getElementById('modalContent');
+            const techBadges = project.techStack.map(t => `<span class="px-3 py-1 bg-peach-100 text-peach-900 text-xs font-semibold rounded-lg">${t}</span>`).join(' ');
+
+            modalContent.innerHTML = `
+                <div class="space-y-6">
+                    <div class="rounded-2xl overflow-hidden aspect-video border border-peach-200">
+                        <img src="${project.image}" alt="${project.title}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/800x450/FFE0D8/8A2B12?text=Project+Preview';">
+                    </div>
+
+                    <div>
+                        <span class="text-xs font-semibold px-2.5 py-1 bg-peach-100 text-peach-800 rounded-md uppercase tracking-wider">${categoryLabel}</span>
+                        <h2 class="text-xl sm:text-2xl font-bold font-header text-peach-900 mt-2">${project.title}</h2>
+                        <p class="text-sm text-cozy-muted mt-2 leading-relaxed">${project.description}</p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase text-cozy-muted tracking-wider mb-2">Teknologi Utama</h4>
+                        <div class="flex flex-wrap gap-2">${techBadges}</div>
+                    </div>
+
+                    <div class="flex items-center gap-3 pt-4 border-t border-peach-100">
+                        <a href="${project.demoUrl}" target="_blank" class="flex-1 py-3 bg-peach-500 hover:bg-peach-600 text-white font-semibold rounded-xl text-center text-sm transition-colors flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Preview Demo
+                        </a>
+                        <a href="${project.githubUrl}" target="_blank" class="px-5 py-3 bg-peach-100 hover:bg-peach-200 text-peach-900 font-semibold rounded-xl text-sm transition-colors flex items-center gap-2">
+                            <i class="fa-brands fa-github"></i> Repository
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function setupMobileMenu() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            const links = document.querySelectorAll('.mobile-link');
+
+            btn.addEventListener('click', () => {
+                const isHidden = menu.classList.contains('hidden');
+                if (isHidden) {
+                    menu.classList.remove('hidden');
+                    icon.classList.replace('fa-bars', 'fa-xmark');
+                } else {
+                    menu.classList.add('hidden');
+                    icon.classList.replace('fa-xmark', 'fa-bars');
+                }
+            });
+
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    icon.classList.replace('fa-xmark', 'fa-bars');
+                });
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = message;
+            
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>
