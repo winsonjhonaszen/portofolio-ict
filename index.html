@@ -815,7 +815,32 @@
         <span id="toastMsg" class="text-xs sm:text-sm font-medium">Operasi berhasil dilakukan!</span>
     </div>
 
-    <script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { 
+            getFirestore, 
+            doc, 
+            getDoc, 
+            setDoc, 
+            onSnapshot 
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyBqa_uwtNpcIzifcB5fnB19UVWdXFLjhqY",
+          authDomain: "winsonportofolio.firebaseapp.com",
+          projectId: "winsonportofolio",
+          storageBucket: "winsonportofolio.firebasestorage.app",
+          messagingSenderId: "977867717562",
+          appId: "1:977867717562:web:6148c9c0cdd27b8ecefb83"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const portfolioDocRef = doc(db, "portfolio_data", "main_content");
+
         // Initial Default Database Schema
         const defaultSiteData = {
             auth: {
@@ -903,33 +928,65 @@
             messages: []
         };
 
-        // Initialize Central Data Store
-        let siteData = JSON.parse(localStorage.getItem('dev_portfolio_full_data')) || defaultSiteData;
-        
-        // Data Migration check if dynamic categories missing
-        if (!siteData.categories) {
-            siteData.categories = [
-                { id: "web", label: "Web App" },
-                { id: "enterprise", label: "Enterprise Solution" },
-                { id: "mobile", label: "Mobile App" }
-            ];
-        }
-
+        // In-memory data store initialized with default data
+        let siteData = { ...defaultSiteData };
         let activeCategory = 'all';
         let isAdminLoggedIn = false;
 
-        function saveSiteData() {
-            localStorage.setItem('dev_portfolio_full_data', JSON.stringify(siteData));
-            renderPublicView();
-            if (isAdminLoggedIn) {
-                renderAdminDashboard();
+        async function saveSiteData() {
+            try {
+                await setDoc(portfolioDocRef, siteData);
+                renderPublicView();
+                if (isAdminLoggedIn) {
+                    renderAdminDashboard();
+                }
+            } catch (err) {
+                console.error("Error saving data to Firestore:", err);
+                showToast("Gagal menyimpan ke Firestore: " + (err.message || err));
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderPublicView();
-            setupMobileMenu();
-        });
+        // Initialize Firestore Realtime Listener
+        function initFirestore() {
+            onSnapshot(portfolioDocRef, async (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    siteData = {
+                        ...defaultSiteData,
+                        ...data,
+                        profile: { ...defaultSiteData.profile, ...(data.profile || {}) },
+                        auth: { ...defaultSiteData.auth, ...(data.auth || {}) },
+                        categories: data.categories || defaultSiteData.categories,
+                        skills: data.skills || defaultSiteData.skills,
+                        projects: data.projects || defaultSiteData.projects,
+                        messages: data.messages || defaultSiteData.messages
+                    };
+                } else {
+                    // Document does not exist in Firestore yet, write initial default data
+                    try {
+                        await setDoc(portfolioDocRef, defaultSiteData);
+                    } catch (e) {
+                        console.warn("Could not auto-create document in Firestore:", e);
+                    }
+                    siteData = { ...defaultSiteData };
+                }
+
+                if (!siteData.categories || siteData.categories.length === 0) {
+                    siteData.categories = [
+                        { id: "web", label: "Web App" },
+                        { id: "enterprise", label: "Enterprise Solution" },
+                        { id: "mobile", label: "Mobile App" }
+                    ];
+                }
+
+                renderPublicView();
+                if (isAdminLoggedIn) {
+                    renderAdminDashboard();
+                }
+            }, (error) => {
+                console.error("Firestore listener error:", error);
+            });
+        }
 
         function renderFilterTabs() {
             const tabsContainer = document.getElementById('filterTabs');
@@ -1581,6 +1638,8 @@
             const icon = document.getElementById('menuIcon');
             const links = document.querySelectorAll('.mobile-link');
 
+            if (!btn || !menu || !icon) return;
+
             btn.addEventListener('click', () => {
                 const isHidden = menu.classList.contains('hidden');
                 if (isHidden) {
@@ -1603,12 +1662,58 @@
         function showToast(message) {
             const toast = document.getElementById('toast');
             const toastMsg = document.getElementById('toastMsg');
+            if (!toast || !toastMsg) return;
             toastMsg.innerText = message;
             
             toast.classList.remove('translate-y-24', 'opacity-0');
             setTimeout(() => {
                 toast.classList.add('translate-y-24', 'opacity-0');
             }, 3500);
+        }
+
+        // Attach all handler functions to window object for inline HTML event attributes
+        window.filterProjects = filterProjects;
+        window.handleSearch = handleSearch;
+        window.handleAdminTrigger = handleAdminTrigger;
+        window.closeLoginModal = closeLoginModal;
+        window.processAdminLogin = processAdminLogin;
+        window.showAdminDashboard = showAdminDashboard;
+        window.exitAdminView = exitAdminView;
+        window.logoutAdmin = logoutAdmin;
+        window.switchAdminTab = switchAdminTab;
+        window.saveHeroSettings = saveHeroSettings;
+        window.openSkillFormModal = openSkillFormModal;
+        window.openEditSkillModal = openEditSkillModal;
+        window.closeEditSkillModal = closeEditSkillModal;
+        window.saveSkillData = saveSkillData;
+        window.deleteSkillItem = deleteSkillItem;
+        window.openCategoryManagerModal = openCategoryManagerModal;
+        window.closeCategoryManagerModal = closeCategoryManagerModal;
+        window.addCategoryItem = addCategoryItem;
+        window.deleteCategoryItem = deleteCategoryItem;
+        window.openProjectEditModal = openProjectEditModal;
+        window.closeEditProjectModal = closeEditProjectModal;
+        window.saveProjectData = saveProjectData;
+        window.deleteProjectItem = deleteProjectItem;
+        window.deleteMessage = deleteMessage;
+        window.saveSecurityCredentials = saveSecurityCredentials;
+        window.handleContactSubmit = handleContactSubmit;
+        window.openProjectModal = openProjectModal;
+        window.closeProjectModal = closeProjectModal;
+        window.setupMobileMenu = setupMobileMenu;
+        window.showToast = showToast;
+
+        // Run initial render and setup Firestore sync
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                renderPublicView();
+                setupMobileMenu();
+                initFirestore();
+            });
+        } else {
+            renderPublicView();
+            setupMobileMenu();
+            initFirestore();
         }
     </script>
 </body>
